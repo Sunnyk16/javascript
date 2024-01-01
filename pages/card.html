@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container">
+        <!-- <div class="container-heading"> -->
+            <div class="sub-container" id="container1">
+                <p>heading</p>
+
+            </div>
+
+        </div>
+
+    </div>
+    <script>
+        const var1=["a","b","c","d",];
+        const var2= document.getElementById("container1");
+        for( i=0;i < var1.length; i++)
+        {
+            var2.innerHTML = var2.innerHTML + `<div class="para"> hii ${ var1[i]}</div>`;
+        }
+
+    </script>
+  </body>
+</html>
