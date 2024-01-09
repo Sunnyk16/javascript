@@ -1,29 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body>
     <div class="container">
-        <h3 class="container-title" >TO Do List</h3>
-        <div class="container-list" id="list">
-            <h3 class="list-content">complete lecture</h3>
-            <h3 class="list-content">play valorant</h3>
-            <h3 class="list-content">complete due work</h3>
-        </div>
+      <h3 class="container-title">TO Do List</h3>
+      <div class="container-input">
+        <input type="text" placeholder="enter task" id="input-text" />
+        <button onclick="addtask()">add</button>
+      </div>
+      <div class="container-list" id="list">
+        <!-- <h3 class="list-content"><span onclick="removeitem() ">🗑️</span></h3> -->
+      </div>
     </div>
 
     <script>
-        const todolist = ["go for walk" , "check assignment"];
-        const var1=document.getElementById("list");
-        for (const task of todolist)
-        {
-            // console.log(`$(task)`)
-            var1.innerHTML = var1.innerHTML + `<h3 class="list-content">${task}</h3>`;
+      let todolist = [];
+      const var1 = document.getElementById("list");
+      // for (const task of todolist) {
+      //   console.log(`$(task)`);
+      //   var1.innerHTML =
+      //     var1.innerHTML + `<h3 class="list-content">${task}</h3>`;
+      // }
+
+      // function loadlocalstorage (){
+      //   localStorage.setItem("task" , (todolist));
+      // }
+
+      const todoitemfromls = localStorage.getItem("todolist")
+      if(todoitemfromls){
+        todolist= JSON.parse(todoitemfromls);
+        console.log(todolist)
+        loadtask();
+      }
+
+
+      function loadtask() {
+        //   const var1 = document.getElementById("list");
+        var1.innerHTML = "";
+        localStorage.setItem("todolist", JSON.stringify(todolist));
+          for (let i = 0; i < todolist.length; i++) {
+          const task = todolist[i];
+          var1.innerHTML =
+            var1.innerHTML += `<h3 class="list-content">${task}<span onclick="removeitem(${i}) ">🗑️</span></h3>`;
         }
+      }
+
+      function addtask() {
+        const inputbox = document.getElementById("input-text");
+        const task = inputbox.value;
+        // loadlocalstorage()
+        loadtask();
+
+        if (task) {
+          todolist.push(task);
+          inputbox.value = "";
+          loadtask();
+        } else {
+          alert("enter task");
+        }
+      }
+
+      function removeitem(index) {
+        todolist.splice(index, 1);
+        loadtask();
+      }
     </script>
-</body>
+  </body>
 </html>
