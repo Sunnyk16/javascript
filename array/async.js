@@ -1,15 +1,14 @@
-// const { log } = require("async");
-
-async function add(){
-    console.log(`hi`)
-    
+async function add() {
+  for (let i = 0; i < 100000; i++) {}
+  throw new Error("something went wrong...");
+  return "function finished";
 }
 
-async function add1(){
-    // console.log(`hi`)
-    return 'hi`'
-    
-} 
-
-const p=add1();
-console.log(p)
+(async function () {
+  try {
+    const p = await add();
+    console.log(p);
+  } catch (err) {
+    console.log(err.message);
+  }
+})();
