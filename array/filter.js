@@ -30,3 +30,12 @@ const positiveNumber = numbers.filter((num, i)=>{
         return true
     }
 })
+console.log(positiveNumber);
+
+const negativenumber = numbers.filter((num, i)=>{
+    if(num<0){
+        return true
+    }
+})
+
+console.log(`negative:`,negativenumber);
